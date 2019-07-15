@@ -1,6 +1,7 @@
 import * as React from "react";
+import IQuotationParams from "../interfaces/quotationParams";
 
-const getDestinations = async () => {
+export const getDestinations = async () => {
   try {
     const headers = {
       accept: "application/json",
@@ -10,7 +11,7 @@ const getDestinations = async () => {
     const mode = "cors";
     const dest = await fetch(
       "https://demo.assisttrip.com.br/api/base/destinations",
-      { method: method, body: JSON.stringify({}), headers: headers }
+      { method: method, mode: mode, headers: headers }
     ).then((res: Response) => res.json());
     console.log(`Valor de dest: ${dest}`);
     return dest;
@@ -23,6 +24,48 @@ const getDestinations = async () => {
   }
 };
 
-export default {
-  getDestinations
+export const getProducts = async () => {
+  try {
+    const headers = {
+      accept: "application/json",
+      authorization: "Basic ZGVtbzozIzJTdFpUJDVFcm5HWVpV"
+    };
+    const method = "GET";
+    const mode = "cors";
+    const prods = await fetch(
+      "https://demo.assisttrip.com.br/api/base/products",
+      { method: method, mode: mode, headers: headers }
+    ).then((res: Response) => res.json());
+    console.log(`Valor de prods: ${prods}`);
+    return prods;
+  } catch (error) {
+    return JSON.stringify(error);
+  }
+};
+
+export const doQuotation = async (params: IQuotationParams) => {
+  const {coverage_begin, coverage_end, destination, coverages} = params;
+  try {
+    const headers = {
+      "accept": "application/json",
+      "authorization": "Basic ZGVtbzozIzJTdFpUJDVFcm5HWVpV",
+      "Content-Type": "application/json"
+    };
+    const body = {
+      "coverage_begin": coverage_begin,
+      "coverage_end": coverage_end,
+      "destination": destination,
+      "coverages": coverages
+    };
+    const method = "POST";
+    const mode = "cors";
+    const quots = await fetch(
+      "https://demo.assisttrip.com.br/api/base/products",
+      { method: method, mode: mode, body: JSON.stringify(body), headers: headers }
+    ).then((res: Response) => res.json());
+    console.log(`Valor de quots: ${quots}`);
+    return quots;
+  } catch (error) {
+    return JSON.stringify(error);
+  }
 }

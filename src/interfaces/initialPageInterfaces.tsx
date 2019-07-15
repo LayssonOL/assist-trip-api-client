@@ -1,8 +1,7 @@
-import DestinationInterface from "../actions/actionTypes";
-import IDestination from "../actions/actionTypes";
+import {DestinationInterface, IDestination} from "../actions/actionTypes";
 
 export default interface IProps{
-    destsActions: DestinationInterface
+    destsActions: DestinationInterface,
     destinations: IDestination[]
 }
 

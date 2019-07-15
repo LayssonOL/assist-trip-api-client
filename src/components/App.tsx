@@ -1,32 +1,59 @@
 import * as React from "react";
-import { useState, useEffect} from "react";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import * as destsActions from "../actions/destinationActions";
+import * as prodsActions from "../actions/productsActions";
+import * as quotsActions from "../actions/quotationActions";
 
-const App = () => {
-    const [name, setName] = useState("Laysson");
 
-    useEffect(() => {
-        // assistTrip.getDestinations().then((res) => console.log(res));
-        document.getElementById("text").innerText = `Hello ${name}`;
-        // document.getElementById("destinations").innerText = `${dests}`;
-    },[name]);
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setName(event.target.value);
+class App extends React.Component<any,any>{
+    componentWillMount(){
+        this.props.destsActions.fetchDestinations();
     }
-    
-    return (
-        <div>
-            <h1>My first Page</h1>
-            <input  type="text"
-                    name="name"
-                    id="inputName"
-                    value={name}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)} />
-            <br/>
-            <p id="text"></p>
-            <br/>
-        </div>
-    );
+
+    render(){
+        return (
+            <div className="initPageContainer">
+                <p>Amo Promo Viagens</p>
+                
+                {/* {this.props.destinations.length > 0 ?
+                    <div>
+                        <ul>
+                            {
+                                this.props.destinations.forEach((dest: IDestination) => {
+                                    return <li>{dest.name}</li>
+                                })
+                            }
+                        </ul>
+                    </div>
+                    :
+                    <div className="initPageEmptyContainer">
+                        No Data
+                    </div>
+                } */}
+            </div>
+        );
+    };
 }
 
-export default App;
+const mapStateToProps = (state: any) => {
+    console.log("STATE")
+    console.log(state)
+    return {
+        destinations: state.dests.destinations,
+        products: state.prods.products
+    };
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        destsActions: bindActionCreators(destsActions, dispatch),
+        prodsActions: bindActionCreators(prodsActions, dispatch),
+        quotsActions: bindActionCreators(destsActions, dispatch)
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);

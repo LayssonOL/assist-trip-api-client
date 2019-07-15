@@ -1,18 +1,15 @@
-import IAppState from "../actions/initialState";
-import IDestination, * as types from "../actions/actionTypes";
-import DestinationInterface from "../actions/actionTypes";
-
-const initialState: IAppState = {
-    destinations: new Array<IDestination>()
-}
+import IAppState, {initialState} from "../actions/initialState";
+import {IDestination, actionTypes}  from "../actions/actionTypes";
+import {DestinationInterface} from "../actions/actionTypes";
 
 const dests = (state = initialState, action: DestinationInterface) => {
     let newState: IAppState;
     switch(action.type){
-        case types.destinationsActionTypes.RECEIVE_DESTINATIONS:
+        case actionTypes.RECEIVE_DESTINATIONS:
             console.log("RECEIVE_DESTINATIONS action");
             newState = {
-                destinations: action.destinations
+                destinations: action.destinations,
+                products: state.products
             };
             return newState;
         default:
