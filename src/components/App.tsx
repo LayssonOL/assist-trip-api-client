@@ -5,7 +5,9 @@ const App = () => {
     const [name, setName] = useState("Laysson");
 
     useEffect(() => {
+        // assistTrip.getDestinations().then((res) => console.log(res));
         document.getElementById("text").innerText = `Hello ${name}`;
+        // document.getElementById("destinations").innerText = `${dests}`;
     },[name]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,6 +24,7 @@ const App = () => {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)} />
             <br/>
             <p id="text"></p>
+            <br/>
         </div>
     );
 }
