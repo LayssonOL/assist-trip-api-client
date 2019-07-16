@@ -18,7 +18,7 @@ class App extends React.Component<any,any>{
     render(){
         return (
             <div className="initPageContainer">
-                <p>Amo Promo Viagens</p>
+                <p>Amo Promo Seguros</p>
                 <InitialPage />
             </div>
         );
