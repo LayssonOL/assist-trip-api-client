@@ -74,7 +74,7 @@ const InitialPage = (props: any) => {
     if (props.quots.isFetching == false && props.quots.quotations.length > 0) {
         // return <div className="initialPageLoading">Loading...</div>;
         return ( 
-            <QuotationsList />
+            <QuotationsList quotData={{beginDate, endDate, selectedDest}} />
         );
     } else {
       return (
