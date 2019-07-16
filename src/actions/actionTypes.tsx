@@ -17,16 +17,15 @@ export enum actionStatus{
 }
 
 export interface ICoverage {
-  id: number;
+  coverage_id: number;
   display_name_ptbr: string;
   display_name_en: string;
   currency: string;
   coverage_value: string;
 }
 export interface IQuotation {
-  id: number;
-  name: string;
   product_id: number;
+  product_name: string;
   net_price: number;
   elder_net_price: number;
   currency: string;

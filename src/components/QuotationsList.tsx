@@ -1,18 +1,17 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { IQuotation, ICoverage } from "src/actions/actionTypes";
+import { IQuotation, ICoverage, IProduct } from "src/actions/actionTypes";
 
 const QuotationsList = (props: any) => {
-  const quotations = props.quots.quotations;
   if (props.quots.isFetching == false && props.quots.quotations.length > 0) {
     return (
       <div>
         <ul>
-          {quotations.map((quotation: IQuotation) => {
+          {props.quots.quotations.map((quot: IQuotation) => {
             return (
-              <li key={quotation.id}>
-                <h4>{quotation.name}</h4>
-                {coverages(quotation)}
+              <li key={quot.product_id}>
+                <h4>{quot.product_name}</h4>
+                {coverages(quot)}
               </li>
             );
           })}
@@ -24,21 +23,17 @@ const QuotationsList = (props: any) => {
   }
 };
 
-const coverages = (quotation: IQuotation) => {
+const coverages = (quot: IQuotation) => {
   return (
     <ul>
-      {quotation.coverages.map((coverage: ICoverage) => {
-        if (
-          coverage.display_name_ptbr.split(",")[0] == "Despesas Médicas" ||
-          coverage.display_name_ptbr == "Danos às Malas"
-        ) {
-          return (
-            <li key={coverage.id}>
-              <p>{coverage.display_name_ptbr}</p>
-              <p>{`Valor: ${coverage.coverage_value}`}</p>
-            </li>
-          );
-        }
+      {quot.coverages.map((coverage: ICoverage) => {
+        return (
+          <li key={coverage.coverage_id}>
+            <p>{coverage.display_name_ptbr}</p>
+            <p>{`Valor: ${coverage.coverage_value}`}</p>
+            <button className="btn btn-primary">Comprar</button>
+          </li>
+        );
       })}
     </ul>
   );
@@ -48,6 +43,7 @@ const mapStateToProps = (state: any) => {
   //   console.log("STATE Init");
   //   console.log(state);
   return {
+    prods: state.prods,
     quots: state.quots
   };
 };

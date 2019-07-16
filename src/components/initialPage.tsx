@@ -8,13 +8,39 @@ import * as quotsActions from "../actions/quotationActions";
 import { useState } from "react";
 import IQuotationParams from "src/interfaces/quotationParams";
 import QuotationsList from "./QuotationsList";
+import { IProduct, ICoverage } from "src/actions/actionTypes";
 
 const InitialPage = (props: any) => {
   const [selectedDest, setSelectedDest] = useState(0);
   const [beginDate, setBeginDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [coverages, setCoverages] = useState([0]);
+
+  const unifyCoverages = () => {
+      let cov: number[] = [];
+      getCoverages().map((vec: Array<number>) => {
+        vec.map((val: number) => {
+            cov.push(val)
+        })
+      })
+      return cov;
+  }
+
+  const getCoverages = (): Array<any> => {
+    return props.prods.products.map((product: IProduct) => {
+        return product.coverages.filter((coverage: ICoverage) => {
+            return (
+                coverage.display_name_ptbr.split(",")[0] == "Despesas Médicas" ||
+                coverage.display_name_ptbr == "Danos às Malas"
+            );
+        }).map((coverage: ICoverage) => {
+            return coverage.coverage_id;
+        })
+    });
+  }
 
   const handleSelect = (event: React.FormEvent<HTMLSelectElement>) => {
+    console.log(unifyCoverages())
     setSelectedDest(parseInt(event.currentTarget.value));
   };
 
@@ -39,7 +65,7 @@ const InitialPage = (props: any) => {
       coverage_begin: beginDate,
       coverage_end: endDate,
       destination: selectedDest,
-      coverages: [0]
+      coverages: unifyCoverages()
     };
     props.quotsActions.doQuotations(params);
   };
@@ -95,6 +121,7 @@ const mapStateToProps = (state: any) => {
   console.log(state);
   return {
     dests: state.dests,
+    prods: state.prods,
     quots: state.quots
   };
 };
