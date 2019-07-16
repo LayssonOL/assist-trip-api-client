@@ -5,32 +5,23 @@ import * as destsActions from "../actions/destinationActions";
 import * as prodsActions from "../actions/productsActions";
 import * as quotsActions from "../actions/quotationActions";
 
+import InitialPage from "./initialPage";
+
 
 class App extends React.Component<any,any>{
-    componentWillMount(){
+    constructor(props: any){
+        super(props);
         this.props.destsActions.fetchDestinations();
     }
+    // componentWillMount(){
+    //     console.log("VAI MONTAR")
+    // }
 
     render(){
         return (
             <div className="initPageContainer">
                 <p>Amo Promo Viagens</p>
-                
-                {/* {this.props.destinations.length > 0 ?
-                    <div>
-                        <ul>
-                            {
-                                this.props.destinations.forEach((dest: IDestination) => {
-                                    return <li>{dest.name}</li>
-                                })
-                            }
-                        </ul>
-                    </div>
-                    :
-                    <div className="initPageEmptyContainer">
-                        No Data
-                    </div>
-                } */}
+                <InitialPage />
             </div>
         );
     };

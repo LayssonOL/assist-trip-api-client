@@ -13,7 +13,7 @@ export const getDestinations = async () => {
       "https://demo.assisttrip.com.br/api/base/destinations",
       { method: method, mode: mode, headers: headers }
     ).then((res: Response) => res.json());
-    console.log(`Valor de dest: ${dest}`);
+    // console.log(`Valor de dest: ${dest}`);
     return dest;
     // .then((response: Response) => {
     //   return JSON.stringify(response);
@@ -36,7 +36,7 @@ export const getProducts = async () => {
       "https://demo.assisttrip.com.br/api/base/products",
       { method: method, mode: mode, headers: headers }
     ).then((res: Response) => res.json());
-    console.log(`Valor de prods: ${prods}`);
+    // console.log(`Valor de prods: ${prods}`);
     return prods;
   } catch (error) {
     return JSON.stringify(error);
@@ -63,7 +63,7 @@ export const doQuotation = async (params: IQuotationParams) => {
       "https://demo.assisttrip.com.br/api/base/products",
       { method: method, mode: mode, body: JSON.stringify(body), headers: headers }
     ).then((res: Response) => res.json());
-    console.log(`Valor de quots: ${quots}`);
+    // console.log(`Valor de quots: ${quots}`);
     return quots;
   } catch (error) {
     return JSON.stringify(error);
