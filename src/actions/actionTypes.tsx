@@ -1,9 +1,19 @@
 import { Action } from "redux";
 
 export enum actionTypes {
+  REQUEST_DESTINATIONS,
   RECEIVE_DESTINATIONS,
+  REQUEST_PRODUCTS,
   RECEIVE_PRODUCTS,
-  DO_QUOTATION
+  REQUEST_QUOTATION,
+  RECEIVE_QUOTATIONS,
+
+}
+
+export enum actionStatus{
+  IS_FETCHING,
+  FAILED,
+  SUCCESS
 }
 
 export interface ICoverage {
@@ -36,16 +46,19 @@ export interface IDestination {
   name: string;
 }
 
-export interface ProductsInterface extends Action {
+export interface ProductInterface extends Action {
   type: actionTypes;
+  status: actionStatus;
   products: Array<IProduct>;
 }
 export interface DestinationInterface extends Action {
   type: actionTypes;
+  status: actionStatus;
   destinations: Array<IDestination>;
 }
 
 export interface QuotationInterface extends Action{
   type: actionTypes,
+  status: actionStatus;
   quotations: Array<IQuotation>;
 }

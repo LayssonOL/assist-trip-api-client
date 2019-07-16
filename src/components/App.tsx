@@ -9,14 +9,12 @@ import InitialPage from "./initialPage";
 
 
 class App extends React.Component<any,any>{
-    constructor(props: any){
-        super(props);
-        this.props.destsActions.fetchDestinations();
-    }
-    // componentWillMount(){
-    //     console.log("VAI MONTAR")
-    // }
 
+    componentWillMount(){
+        this.props.destsActions.fetchDestinations();
+        this.props.prodsActions.fetchProducts();
+    }
+    
     render(){
         return (
             <div className="initPageContainer">
@@ -32,7 +30,8 @@ const mapStateToProps = (state: any) => {
     console.log(state)
     return {
         destinations: state.dests.destinations,
-        products: state.prods.products
+        products: state.prods.products,
+        quotations: state.quots.quotations
     };
 }
 

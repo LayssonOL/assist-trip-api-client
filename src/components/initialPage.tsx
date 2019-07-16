@@ -1,9 +1,9 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import DestList from "./destinationsList";
-import { IDestination } from "src/actions/actionTypes";
 
 const InitialPage = (props: any) => {
+    if (props.dests.isFetching == false && props.dests.destinations.length > 0){
     return (
         <div className="formContainer">
             <form>
@@ -13,15 +13,18 @@ const InitialPage = (props: any) => {
                 <button type="submit">Search</button>
             </form>
         </div>
-    )
+    )}else{
+        return(
+            <div className="initialPageLoading">Loading...</div>
+        );
+    }
 }
 
 const mapStateToProps = (state: any) => {
     console.log("STATE Init")
     console.log(state)
     return {
-        destinations: state.dests.destinations,
-        products: state.prods.products
+        dests: state.dests,
     };
 }
 
