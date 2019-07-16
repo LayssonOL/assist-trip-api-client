@@ -1,39 +1,41 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { useState, useEffect } from "react";
 // import IDestProps from "../interfaces/destinationListInterface";
 import { IDestination } from "src/actions/actionTypes";
 
 const DestList = (props: any) => {
-  const [selectedDest, setSelectedDest] = useState("Destino");
-
   //   const destinations = [
   //     { id: 0, name: "América do Sul" },
   //     { id: 1, name: "América do Norte" },
   //     { id: 2, name: "Europa" }
   //   ];
 
-  const handleChange = (event: React.FormEvent<HTMLSelectElement>) => {
-    setSelectedDest(event.currentTarget.value);
-  };
 
-  return (
-    <select value={selectedDest} onChange={e => handleChange(e)}>
-      {props.destinations.map((dest: IDestination, i: number) => {
-        <option value={dest.name} key={dest.id.toString()}>
-          {dest.name}
-        </option>;
-      })}
-    </select>
-  );
+  if(props.dests.isFetching == false && props.dests.destinations.length > 0){
+    return (
+      <select className="custom-select" defaultValue={props.selectedDest} onChange={(e) => props.handleChange(e)}>
+        <option value="0" disabled hidden>Destino</option>
+        {props.dests.destinations.map((dest: IDestination) => {
+          return (<option value={dest.id} key={dest.id}>
+            {dest.name}
+          </option>);
+        })}
+      </select>
+    );
+  }else{
+    return (
+      <div className="initialPageLoading">
+        Loading...
+      </div>
+    );
+  }
 };
 
 const mapStateToProps = (state: any) => {
   console.log("STATE DEST LIST");
   console.log(state);
   return {
-    destinations: state.dests.destinations,
-    products: state.prods.products
+    dests: state.dests,
   };
 };
 

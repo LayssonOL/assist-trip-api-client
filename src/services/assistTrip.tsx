@@ -57,13 +57,15 @@ export const doQuotation = async (params: IQuotationParams) => {
       "destination": destination,
       "coverages": coverages
     };
+    // console.log(body)
     const method = "POST";
     const mode = "cors";
     const quots = await fetch(
       "https://demo.assisttrip.com.br/api/base/products",
       { method: method, mode: mode, body: JSON.stringify(body), headers: headers }
     ).then((res: Response) => res.json());
-    // console.log(`Valor de quots: ${quots}`);
+    console.log("Valor de quots: ");
+    console.log(quots);
     return quots;
   } catch (error) {
     return JSON.stringify(error);

@@ -39,7 +39,7 @@ const mapDispatchToProps = (dispatch: any) => {
     return {
         destsActions: bindActionCreators(destsActions, dispatch),
         prodsActions: bindActionCreators(prodsActions, dispatch),
-        quotsActions: bindActionCreators(destsActions, dispatch)
+        quotsActions: bindActionCreators(quotsActions, dispatch)
     };
 }
 

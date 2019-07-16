@@ -4,14 +4,14 @@ import IQuotationParams from "../interfaces/quotationParams";
 
 export const requestQuotations = () => {
   return {
-    type: actionTypes.REQUEST_PRODUCTS,
+    type: actionTypes.REQUEST_QUOTATIONS,
     status: actionStatus.IS_FETCHING,
   }
 }
 
 export const failedQuotations = (err: Error) => {
   return {
-    type: actionTypes.RECEIVE_PRODUCTS,
+    type: actionTypes.RECEIVE_QUOTATIONS,
     status: actionStatus.FAILED,
     destinations: err
   }
@@ -20,7 +20,7 @@ export const failedQuotations = (err: Error) => {
 export const receiveQuotations = (quotations: Array<IQuotation>) => {
   // console.log(destinations)
   return {
-    type: actionTypes.REQUEST_QUOTATION,
+    type: actionTypes.RECEIVE_QUOTATIONS,
     status: actionStatus.SUCCESS,
     quotations: quotations
   };

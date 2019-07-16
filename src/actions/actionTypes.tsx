@@ -5,7 +5,7 @@ export enum actionTypes {
   RECEIVE_DESTINATIONS,
   REQUEST_PRODUCTS,
   RECEIVE_PRODUCTS,
-  REQUEST_QUOTATION,
+  REQUEST_QUOTATIONS,
   RECEIVE_QUOTATIONS,
 
 }
@@ -24,6 +24,8 @@ export interface ICoverage {
   coverage_value: string;
 }
 export interface IQuotation {
+  id: number;
+  name: string;
   product_id: number;
   net_price: number;
   elder_net_price: number;

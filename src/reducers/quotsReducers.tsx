@@ -5,7 +5,8 @@ import { QuotationInterface } from "../actions/actionTypes";
 const quots = (state = initialState.quotations, action: QuotationInterface) => {
   let newState: IQuot;
   switch (action.type) {
-    case actionTypes.REQUEST_QUOTATION:
+    case actionTypes.REQUEST_QUOTATIONS:
+        console.log("REQUISITOU QUOTS")
       newState = Object.assign({}, {
         isFetching: true,
         failed: false,
@@ -15,6 +16,7 @@ const quots = (state = initialState.quotations, action: QuotationInterface) => {
     case actionTypes.RECEIVE_QUOTATIONS:
       switch (action.status) {
         case actionStatus.FAILED:
+            console.log("FALHOU QUOTS")
           newState = Object.assign({}, {
             isFetching: false,
             failed: true,
@@ -22,6 +24,7 @@ const quots = (state = initialState.quotations, action: QuotationInterface) => {
           });
           return newState;
         case actionStatus.SUCCESS:
+            console.log("RECEBEU QUOTS")
           newState = Object.assign({}, {
             isFetching: false,
             failed: false,
