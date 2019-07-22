@@ -6,6 +6,7 @@ import * as prodsActions from "../actions/productsActions";
 import * as quotsActions from "../actions/quotationActions";
 
 import InitialPage from "./initialPage";
+import UserDataForm from "./userDataForm";
 
 
 class App extends React.Component<any,any>{
@@ -21,7 +22,8 @@ class App extends React.Component<any,any>{
                 <h1 className="bg-success text-light align-center
                     text-center
                 ">Amo Promo Seguros</h1>
-                <InitialPage className="container" />
+                {/* <InitialPage className="container" /> */}
+                <UserDataForm />
             </div>
         );
     };

@@ -36,11 +36,11 @@ const QuotationsList = (props: any) => {
         )
     } else {
       return (
-        <div>
-          <ul>
+        <div className="d-flex">
+          <ul className="list-group">
             {props.quots.quotations.map((quot: IQuotation) => {
               return (
-                <li key={quot.product_id}>
+                <li className="list-item" key={quot.product_id}>
                   <h4>{quot.product_name}</h4>
                   {coverages(quot, handleChangeBuy)}
                 </li>
@@ -63,7 +63,7 @@ const coverages = (quot: IQuotation, handleChange: any) => {
           <li key={coverage.coverage_id}>
             <p>{coverage.display_name_ptbr}</p>
             <p>{`Valor: ${coverage.coverage_value}`}</p>
-            <button className="btn btn-primary"
+            <button className="btn btn-success"
             onChange={(e) => handleChange(e,coverage)}
             >Comprar</button>
           </li>
