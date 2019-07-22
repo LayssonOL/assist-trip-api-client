@@ -7,13 +7,47 @@ export enum actionTypes {
   RECEIVE_PRODUCTS,
   REQUEST_QUOTATIONS,
   RECEIVE_QUOTATIONS,
-
+  RECEIVE_PURCHASE_DATA,
+  REQUEST_PURCHASE,
+  RECEIVE_VOUCHER,
 }
 
 export enum actionStatus{
   IS_FETCHING,
   FAILED,
   SUCCESS
+}
+
+export interface IContact{
+  name: string,
+  email: string,
+  phone: string,
+}
+
+export interface IAddress{
+  address: string,
+  cep: string,
+  city: string,
+  state: string,
+}
+
+export interface IInsureds{
+  external_id: number,
+  first_name: string,
+  last_name: string,
+  date_of_birth: string,
+  cpf: string,
+}
+
+export interface IPurchase{
+  external_id: number,
+  plan_id: number,
+  coverage_begin: string,
+  coverage_end: string,
+  destination_id: number,
+  contact: IContact,
+  address: IAddress,
+  insureds: IInsureds[],
 }
 
 export interface ICoverage {
@@ -62,4 +96,10 @@ export interface QuotationInterface extends Action{
   type: actionTypes,
   status: actionStatus;
   quotations: Array<IQuotation>;
+}
+
+export interface PurchaseInterface extends Action{
+  type: actionTypes,
+  status: actionStatus;
+  purchase: IPurchase;
 }

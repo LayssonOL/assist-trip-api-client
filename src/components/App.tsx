@@ -17,9 +17,11 @@ class App extends React.Component<any,any>{
     
     render(){
         return (
-            <div className="initPageContainer">
-                <p>Amo Promo Seguros</p>
-                <InitialPage />
+            <div className="container">
+                <h1 className="bg-success text-light align-center
+                    text-center
+                ">Amo Promo Seguros</h1>
+                <InitialPage className="container" />
             </div>
         );
     };

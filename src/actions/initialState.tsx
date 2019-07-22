@@ -1,4 +1,4 @@
-import {IDestination, actionStatus} from "./actionTypes";
+import {IDestination, actionStatus, IPurchase} from "./actionTypes";
 import {IQuotation} from "./actionTypes";
 import {IProduct} from "./actionTypes";
 
@@ -20,10 +20,17 @@ export interface IQuot {
     quotations: Array<IQuotation>,
 }
 
+export interface IPurch {
+    isFetching: boolean,
+    failed: boolean,
+    purchase?: IPurchase,
+}
+
 export interface IAppState {
     destinations?: IDest,
     products?: IProd,
-    quotations?: IQuot
+    quotations?: IQuot,
+    purchase?: IPurch
 }
 
 
@@ -42,5 +49,9 @@ export const initialState: IAppState = {
         isFetching: false,
         failed: false,
         quotations: []
+    },
+    purchase: {
+        isFetching: false,
+        failed: false,
     }
 }
