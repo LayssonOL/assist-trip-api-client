@@ -177,7 +177,7 @@ const userDataForm = (name: string, email: string, phone: string,
 };
 
 const mapStateToProps = (state: any) => {
-  console.log("STATE Init");
+  console.log("STATE InitialPage");
   console.log(state);
   return {
     dests: state.dests,
